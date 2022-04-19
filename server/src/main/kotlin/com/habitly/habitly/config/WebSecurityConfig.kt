@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 
 @EnableWebSecurity
 class WebSecurityConfiguration(
-    private val customUserDetailsService: CustomUserDetailsService,
+    private var customUserDetailsService: CustomUserDetailsService,
 ) : WebSecurityConfigurerAdapter() {
 
     @Bean

@@ -10,7 +10,7 @@ open class CustomUserDetails(user: User) : User(user), UserDetails {
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         return roles
             .stream()
-            .map { role -> SimpleGrantedAuthority(role.roleName) }
+            .map { role -> SimpleGrantedAuthority(role.name) }
             .collect(Collectors.toList())
     }
 

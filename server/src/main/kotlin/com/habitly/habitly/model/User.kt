@@ -1,38 +1,49 @@
 package com.habitly.habitly.model
 
-import Role
+import com.habitly.habitly.annotation.AllOpenAnnotation
 import javax.persistence.*
 
 @Entity
-open class User(
+@AllOpenAnnotation
+@Table(name = "user")
+class User(
     var userName: String,
     var displayName: String,
     var email: String,
     var hashedPassword: String,
-) {
-    @Id
-    @GeneratedValue
-    var id: Long = 0
 
     @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
-    var roles: Set<Role> = setOf(Role("ROLE_USER"))
-
+    @JoinTable(
+        name = "user_roles",
+        joinColumns = [JoinColumn(name = "user_id", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "role_id", referencedColumnName = "id")]
+    ) var roles: MutableList<Role> = mutableListOf()
+) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = 0
     var accountNonExpired: Boolean = true
     var accountNonLocked: Boolean = true
     var credentialsNonExpired: Boolean = true
     var isLocked: Boolean = false
     var userIsEnabled: Boolean = true
 
-    constructor(user: User) : this(user.userName, user.displayName, user.hashedPassword, user.email) {
-        this.id = user.id
-        this.userName = user.userName
-        this.email = user.email
-        this.hashedPassword = user.hashedPassword
-        this.accountNonExpired = user.accountNonExpired
-        this.accountNonLocked = user.accountNonLocked
-        this.credentialsNonExpired = user.credentialsNonExpired
-        this.roles = user.roles
-        this.isLocked = user.isLocked
-        this.userIsEnabled = user.userIsEnabled
+    constructor(user: User) : this(
+        user.userName,
+        user.displayName,
+        user.hashedPassword,
+        user.email,
+        user.roles
+    ) {
+        user.id.also { this.id = it }
+        user.userName.also { this.userName = it }
+        user.email.also { this.email = it }
+        user.hashedPassword.also { this.hashedPassword = it }
+        user.accountNonExpired.also { this.accountNonExpired = it }
+        user.accountNonLocked.also { this.accountNonLocked = it }
+        user.credentialsNonExpired.also { this.credentialsNonExpired = it }
+        user.roles.also { this.roles = it }
+        user.isLocked.also { this.isLocked = it }
+        user.userIsEnabled.also { this.userIsEnabled = it }
     }
 }

@@ -1,10 +1,12 @@
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+package com.habitly.habitly.model
+
+import javax.persistence.*
 
 @Entity
-data class Role(var roleName: String = "") {
+@Table(name = "role")
+data class Role(
+    val name: String = ""
+) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0
