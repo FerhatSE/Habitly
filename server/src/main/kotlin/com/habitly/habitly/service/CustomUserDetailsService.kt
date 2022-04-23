@@ -1,6 +1,6 @@
 package com.habitly.habitly.service
 
-import com.habitly.habitly.model.CustomUserDetails
+import com.habitly.habitly.model.user.CustomUserDetails
 import com.habitly.habitly.repository.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService

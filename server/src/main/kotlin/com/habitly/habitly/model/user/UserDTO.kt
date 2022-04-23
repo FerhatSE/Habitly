@@ -1,4 +1,4 @@
-package com.habitly.habitly.model
+package com.habitly.habitly.model.user
 
 data class UserDTO(
     val username: String,

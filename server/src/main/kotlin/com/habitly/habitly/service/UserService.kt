@@ -1,9 +1,7 @@
 package com.habitly.habitly.service
 
-import com.habitly.habitly.model.UserDTO
+import com.habitly.habitly.model.user.UserDTO
 import org.springframework.http.ResponseEntity
-import org.springframework.stereotype.Service
-import javax.transaction.Transactional
 
 interface UserService {
     fun save(userDTO: UserDTO): ResponseEntity<String>

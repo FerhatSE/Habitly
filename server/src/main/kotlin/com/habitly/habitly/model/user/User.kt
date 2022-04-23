@@ -1,6 +1,7 @@
-package com.habitly.habitly.model
+package com.habitly.habitly.model.user
 
 import com.habitly.habitly.annotation.AllOpenAnnotation
+import com.habitly.habitly.model.Role
 import javax.persistence.*
 
 @Entity

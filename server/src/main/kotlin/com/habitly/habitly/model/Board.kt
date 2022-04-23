@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 @AllOpenAnnotation
-@Table(name = "board")
+@Table(name = "user_board")
 class Board(
     var title: String,
     var description: String,
@@ -15,7 +15,7 @@ class Board(
     var id: Long = 0
 
     @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
-    var lists: MutableList<List> = mutableListOf()
+    var taskLists: MutableList<TaskList> = mutableListOf()
 
     lateinit var imageURL: String
 }

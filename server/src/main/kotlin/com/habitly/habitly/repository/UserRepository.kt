@@ -1,6 +1,6 @@
 package com.habitly.habitly.repository
 
-import com.habitly.habitly.model.User
+import com.habitly.habitly.model.user.User
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 

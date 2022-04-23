@@ -1,4 +1,4 @@
-package com.habitly.habitly.model
+package com.habitly.habitly.model.user
 
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority

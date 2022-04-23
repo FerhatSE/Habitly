@@ -1,8 +1,8 @@
 package com.habitly.habitly.service
 
 import com.habitly.habitly.model.Role
-import com.habitly.habitly.model.User
-import com.habitly.habitly.model.UserDTO
+import com.habitly.habitly.model.user.User
+import com.habitly.habitly.model.user.UserDTO
 import com.habitly.habitly.repository.UserRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -28,7 +28,6 @@ class UserServiceImpl(val userRepository: UserRepository, val passwordEncoder: B
         return if (userRepository.findByUserName(userDTO.username) == null) {
             ResponseEntity(userRepository.save(user).toString(), HttpStatus.OK)
         } else {
-            print(userDTO.toString())
             ResponseEntity("User with this name already exists", HttpStatus.NOT_ACCEPTABLE)
         }
     }
