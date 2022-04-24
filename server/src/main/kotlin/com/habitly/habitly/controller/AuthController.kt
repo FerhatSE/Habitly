@@ -1,36 +1,55 @@
 package com.habitly.habitly.controller
 
-import com.habitly.habitly.model.user.UserDTO
+import com.habitly.habitly.dto.LoginDTO
+import com.habitly.habitly.dto.RegistrationDTO
+import com.habitly.habitly.dto.ResponseMessage
+import com.habitly.habitly.model.user.User
 import com.habitly.habitly.repository.UserRepository
 import com.habitly.habitly.service.UserServiceImpl
-import org.springframework.http.HttpStatus
+import com.habitly.habitly.util.JwtTokenUtil
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.*
+import org.springframework.security.authentication.AuthenticationManager
+import org.springframework.security.authentication.BadCredentialsException
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.web.bind.annotation.ModelAttribute
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/auth")
 class AuthController(
     val userService: UserServiceImpl,
-    val userRepository: UserRepository
+    val userRepository: UserRepository,
+    val tokenUtil: JwtTokenUtil,
+    val authenticationManager: AuthenticationManager
 ) {
 
     @PostMapping("/register")
-    fun register(@ModelAttribute("user") userDTO: UserDTO): ResponseEntity<String> {
-        if (userRepository.findOneByUserName(userDTO.username) != null) {
-            return ResponseEntity<String>(
-                "User with username ${userDTO.username} already exists",
-                HttpStatus.BAD_REQUEST
-            )
+    fun register(@ModelAttribute("register") registrationDTO: RegistrationDTO): ResponseEntity<Any> {
+        if (userRepository.findOneByUserName(registrationDTO.username) != null) {
+            return ResponseEntity.badRequest()
+                .body(ResponseMessage("\"User with username " + "${registrationDTO.username} already exists\""))
         }
-        print(userService.save(userDTO).body)
-        return ResponseEntity<String>(
-            "User has successfully registered",
-            HttpStatus.OK
-        )
+        userService.save(registrationDTO)
+        return ResponseEntity.ok(ResponseMessage("User has successfully registered"))
     }
 
-    @GetMapping("login")
-    fun login(): String {
-        return ""
+    @PostMapping("login")
+    fun login(@ModelAttribute("login") loginDTO: LoginDTO): ResponseEntity<Any> {
+        try {
+            val authentication = authenticationManager.authenticate(
+                UsernamePasswordAuthenticationToken(loginDTO.username, loginDTO.password)
+            )
+
+            val user = authentication.principal as? User
+                ?: return ResponseEntity.badRequest().body(ResponseMessage("User not found."))
+
+            val jwt = JwtTokenUtil().generateAccessToken(user)
+
+            return ResponseEntity.ok(jwt)
+        } catch (exception: BadCredentialsException) {
+            return ResponseEntity.badRequest().body(exception.message)
+        }
     }
 }

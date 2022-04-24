@@ -28,6 +28,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.data:spring-data-jpa:2.6.3")
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
     implementation(kotlin("script-runtime"))
 }
 

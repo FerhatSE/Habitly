@@ -29,20 +29,20 @@ class BoardController(
         )
     }
 
-//    @PostMapping("/tasklist/add{id}")
-//    fun createTaskList(@PathVariable id: Long, title: String): ResponseEntity<String> {
-//        val board = boardRepository.findById(id).get()
-//
-//        if (board.taskLists.any { task -> task.title == title }) {
-//            return ResponseEntity<String>(
-//                "Task list with title $title already exists",
-//                HttpStatus.BAD_REQUEST
-//            )
-//        }
-//        return ResponseEntity<String>(
-//            boardService.createTaskList(id, title).toString(),
-//            HttpStatus.OK
-//        )
-//    }
+    @PostMapping("/tasklist/add{id}")
+    fun createTaskList(@PathVariable id: Long, title: String): ResponseEntity<String> {
+        val board = boardRepository.findById(id).get()
+
+        if (board.taskLists.any { task -> task.title == title }) {
+            return ResponseEntity<String>(
+                "Task list with title $title already exists",
+                HttpStatus.BAD_REQUEST
+            )
+        }
+        return ResponseEntity<String>(
+            boardService.createTaskList(id, title).toString(),
+            HttpStatus.OK
+        )
+    }
 }
 

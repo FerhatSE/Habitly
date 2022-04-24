@@ -1,10 +1,10 @@
 package com.habitly.habitly.service
 
-import com.habitly.habitly.model.user.UserDTO
+import com.habitly.habitly.dto.RegistrationDTO
 import org.springframework.http.ResponseEntity
 
 interface UserService {
-    fun save(userDTO: UserDTO): ResponseEntity<String>
+    fun save(registrationDTO: RegistrationDTO): ResponseEntity<String>
 
     fun login(username: String, password: String): ResponseEntity<String>
 }

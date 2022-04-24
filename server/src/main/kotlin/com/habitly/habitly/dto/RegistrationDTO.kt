@@ -1,6 +1,6 @@
-package com.habitly.habitly.model.user
+package com.habitly.habitly.dto
 
-data class UserDTO(
+data class RegistrationDTO(
     val username: String,
     val displayName: String,
     val email: String,
