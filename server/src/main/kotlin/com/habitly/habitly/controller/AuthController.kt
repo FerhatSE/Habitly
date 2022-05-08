@@ -3,7 +3,6 @@ package com.habitly.habitly.controller
 import com.habitly.habitly.dto.LoginDTO
 import com.habitly.habitly.dto.RegistrationDTO
 import com.habitly.habitly.dto.ResponseMessage
-import com.habitly.habitly.model.user.User
 import com.habitly.habitly.repository.UserRepository
 import com.habitly.habitly.service.UserServiceImpl
 import com.habitly.habitly.util.JwtTokenUtil
@@ -11,6 +10,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -42,10 +42,10 @@ class AuthController(
                 UsernamePasswordAuthenticationToken(loginDTO.username, loginDTO.password)
             )
 
-            val user = authentication.principal as? User
+            val user = authentication.principal as? UserDetails
                 ?: return ResponseEntity.badRequest().body(ResponseMessage("User not found."))
 
-            val jwt = JwtTokenUtil().generateAccessToken(user)
+            val jwt = JwtTokenUtil().generateToken(user)
 
             return ResponseEntity.ok(jwt)
         } catch (exception: BadCredentialsException) {

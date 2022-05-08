@@ -1,22 +1,52 @@
 package com.habitly.habitly.util
 
-import com.habitly.habitly.model.user.User
+import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 import java.util.*
 
-@Component
+@Service
 class JwtTokenUtil {
 
-    private val EXPIRATION = 24 * 60 * 60 * 1000 // 24h
-    private val SECRET = "placeholder" // Placeholder secret key
+    private val expiration = 24 * 60 * 60 * 1000 // 24h
 
-    fun generateAccessToken(user: User): String {
+    private val secret = "placeholder" // Placeholder secret key
+
+    fun extractUsername(token: String): String {
+        return extractClaim(token, Claims::getSubject)
+    }
+
+    fun extractExpiration(token: String): Date {
+        return extractClaim(token, Claims::getExpiration)
+    }
+
+    fun <T> extractClaim(token: String, claimsResolver: (Claims) -> T): T {
+        val claims: Claims = extractAllClaims(token)
+        return claimsResolver(claims)
+    }
+
+    private fun isTokenExpired(token: String): Boolean {
+        return extractExpiration(token).before(Date())
+    }
+
+    private fun extractAllClaims(token: String): Claims {
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).body
+    }
+
+    fun generateToken(userDetails: UserDetails): String {
+        val claims = HashMap<String, Any>()
+        return createToken(claims, userDetails.username)
+    }
+
+    fun createToken(claims: Map<String, Any>, subject: String): String {
         return Jwts.builder()
-            .setIssuer(user.id.toString())
-            .setExpiration(Date(System.currentTimeMillis() + EXPIRATION)) // One day
-            .signWith(SignatureAlgorithm.HS512, SECRET)
+            .setClaims(claims)
+            .setSubject(subject)
+            .setExpiration(Date(System.currentTimeMillis() + expiration)) // One day
+            .signWith(SignatureAlgorithm.HS512, secret)
             .compact()
     }
 }
