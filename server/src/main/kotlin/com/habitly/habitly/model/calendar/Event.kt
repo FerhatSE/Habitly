@@ -1,14 +1,16 @@
-package com.habitly.habitly.model
+package com.habitly.habitly.model.calendar
 
 import com.habitly.habitly.annotation.AllOpenAnnotation
+import java.awt.Label
 import java.util.*
 import javax.persistence.*
 
 @Entity
 @AllOpenAnnotation
-@Table(name = "task")
-class Task(
+@Table(name = "event")
+class Event(
     var name: String,
+    var description: String,
     var dateCreated: Date,
     var dateDue: Date,
 ) {

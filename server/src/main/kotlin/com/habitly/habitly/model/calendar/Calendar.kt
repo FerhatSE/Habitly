@@ -1,21 +1,19 @@
-package com.habitly.habitly.model
+package com.habitly.habitly.model.calendar
 
 import com.habitly.habitly.annotation.AllOpenAnnotation
+import com.habitly.habitly.model.project.TaskList
 import javax.persistence.*
 
 @Entity
 @AllOpenAnnotation
-@Table(name = "user_board")
-class Board(
-    var title: String,
-    var description: String,
+@Table(name = "user_calendar")
+data class Calendar(
+    var userID: Long
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0
 
     @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
-    var taskLists: MutableList<TaskList> = mutableListOf()
-
-    lateinit var imageURL: String
+    var events: MutableList<Event> = mutableListOf()
 }

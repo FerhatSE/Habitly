@@ -4,7 +4,7 @@ plugins {
     id("org.springframework.boot") version "2.6.6"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.6.20"
-    id ("org.jetbrains.kotlin.plugin.spring") version "1.6.20"
+    id("org.jetbrains.kotlin.plugin.spring") version "1.6.20"
     kotlin("jvm") version "1.4.21"
     kotlin("plugin.jpa") version "1.4.21"
 }
@@ -20,6 +20,7 @@ repositories {
 dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
     implementation("mysql:mysql-connector-java:8.0.28")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")

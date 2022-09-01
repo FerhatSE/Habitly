@@ -1,8 +1,8 @@
 package com.habitly.habitly.dto
 
- class RegistrationDTO(
+class AuthenticationResponseDTO(
+    val id: Number,
     val username: String,
     val displayName: String,
-    val password: String
+    val jwtToken: String
 )
-

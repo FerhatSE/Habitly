@@ -9,8 +9,7 @@ import javax.persistence.*
 @Table(name = "user")
 class User(
     var userName: String,
-    var displayName: String,
-    var email: String,
+    val displayName: String,
     var hashedPassword: String,
 
     @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
@@ -33,12 +32,10 @@ class User(
         user.userName,
         user.displayName,
         user.hashedPassword,
-        user.email,
         user.roles
     ) {
         user.id.also { this.id = it }
         user.userName.also { this.userName = it }
-        user.email.also { this.email = it }
         user.hashedPassword.also { this.hashedPassword = it }
         user.accountNonExpired.also { this.accountNonExpired = it }
         user.accountNonLocked.also { this.accountNonLocked = it }

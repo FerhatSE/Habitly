@@ -21,7 +21,6 @@ class UserServiceImpl(val userRepository: UserRepository, val passwordEncoder: B
         val user = User(
             registrationDTO.username,
             registrationDTO.displayName,
-            registrationDTO.email,
             passwordEncoder.encode(registrationDTO.password),
             listOf(Role("ROLE_USER")) as MutableList<Role>
         )
@@ -33,6 +32,8 @@ class UserServiceImpl(val userRepository: UserRepository, val passwordEncoder: B
     }
 
     override fun login(username: String, password: String): ResponseEntity<String> {
+        print(username)
+        print(password)
         val user = userRepository.findByUserName(username)
             ?: return ResponseEntity("Invalid credentials, please try again.", HttpStatus.BAD_REQUEST)
         return if ((user.hashedPassword) == password) {
@@ -40,12 +41,5 @@ class UserServiceImpl(val userRepository: UserRepository, val passwordEncoder: B
         } else {
             ResponseEntity("Invalid credentials, please try again.", HttpStatus.OK)
         }
-    }
-
-    private fun mapRolesToAuthorities(roles: Collection<Role>): Collection<GrantedAuthority?> {
-        return roles
-            .stream()
-            .map { role -> SimpleGrantedAuthority(role.name) }
-            .collect(Collectors.toList())
     }
 }
