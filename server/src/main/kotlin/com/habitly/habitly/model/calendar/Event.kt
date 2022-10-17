@@ -7,7 +7,6 @@ import javax.persistence.*
 
 @Entity
 @AllOpenAnnotation
-@Table(name = "event")
 class Event(
     var name: String,
     var description: String,

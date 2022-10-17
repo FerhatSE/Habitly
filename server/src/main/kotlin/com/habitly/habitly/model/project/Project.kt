@@ -1,15 +1,15 @@
 package com.habitly.habitly.model.project
 
 import com.habitly.habitly.annotation.AllOpenAnnotation
+import java.util.*
 import javax.persistence.*
 
 @Entity
 @AllOpenAnnotation
-@Table(name = "user_project")
-data class Project(
+class Project(
     var title: String,
-    var description: String,
-    var userID: Long
+    var colorTheme: String,
+    var deadline: Date
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +17,4 @@ data class Project(
 
     @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
     var taskLists: MutableList<TaskList> = mutableListOf()
-
-    var imageURL: String = ""
 }

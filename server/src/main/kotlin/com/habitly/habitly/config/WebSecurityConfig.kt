@@ -15,6 +15,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.CorsConfigurationSource
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import java.util.*
 
 
@@ -47,7 +50,6 @@ class WebSecurityConfiguration(
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         http.authorizeRequests().antMatchers("/auth/**").permitAll()
         http.authorizeRequests().anyRequest().authenticated()
-        http.formLogin().loginPage("/auth/login")
         http.addFilterBefore(
             jwtTokenFilterRegistrationBean().filter,
             UsernamePasswordAuthenticationFilter::class.java
@@ -62,5 +64,17 @@ class WebSecurityConfiguration(
     @Throws(Exception::class)
     override fun configure(web: WebSecurity) {
         web.ignoring().antMatchers("/auth/**")
+    }
+
+    @Bean
+    fun corsConfigurationSource(): CorsConfigurationSource? {
+        val configuration = CorsConfiguration()
+        configuration.allowedOrigins = Collections.singletonList("*")
+        configuration.allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
+        configuration.exposedHeaders = listOf("Authorization", "content-type")
+        configuration.allowedHeaders = listOf("Authorization", "content-type")
+        val source = UrlBasedCorsConfigurationSource()
+        source.registerCorsConfiguration("/**", configuration)
+        return source
     }
 }

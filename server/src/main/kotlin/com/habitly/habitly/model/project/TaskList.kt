@@ -5,7 +5,6 @@ import javax.persistence.*
 
 @Entity
 @AllOpenAnnotation
-@Table(name = "task_list")
 class TaskList(
     var title: String,
 ) {

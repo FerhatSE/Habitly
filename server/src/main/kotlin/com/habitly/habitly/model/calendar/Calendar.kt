@@ -6,7 +6,6 @@ import javax.persistence.*
 
 @Entity
 @AllOpenAnnotation
-@Table(name = "user_calendar")
 data class Calendar(
     var userID: Long
 ) {

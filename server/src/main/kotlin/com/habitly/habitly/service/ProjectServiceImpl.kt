@@ -2,21 +2,28 @@ package com.habitly.habitly.service
 
 import com.habitly.habitly.model.project.Project
 import com.habitly.habitly.model.project.TaskList
+import com.habitly.habitly.model.user.User
 import com.habitly.habitly.repository.ProjectRepository
+import com.habitly.habitly.util.UserUtil
 import org.springframework.stereotype.Service
+import java.util.*
 import javax.transaction.Transactional
 
 @Transactional
 @Service
-class ProjectServiceImpl(val projectRepository: ProjectRepository) : ProjectService {
+class ProjectServiceImpl(
+    val projectRepository: ProjectRepository,
+    val userUtil: UserUtil
+) : ProjectService {
     override fun getProjects(): List<Project> {
-        return projectRepository.findAll().toList()
+        return getUser().projects
     }
 
-    override fun createProject(title: String, description: String, userID: Long): Project {
-        val board = Project(title, description, userID)
-        return projectRepository.save(board)
+    override fun addProject(title: String, colorTheme: String, deadline: Date) {
+        val project = Project(title, colorTheme, deadline)
+        getUser().projects.add(project)
     }
+
 
     override fun createTaskList(id: Long, title: String): TaskList {
         val board = projectRepository.findById(id).get()
@@ -39,10 +46,7 @@ class ProjectServiceImpl(val projectRepository: ProjectRepository) : ProjectServ
         super.editTaskList()
     }
 
-    /* Choose one of the available preset backgrounds
-           Preferably the least used one
-         */
-    private fun setBackgroundImage() {
-
+    private fun getUser(): User {
+        return userUtil.getUser()
     }
 }

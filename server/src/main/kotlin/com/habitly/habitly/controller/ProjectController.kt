@@ -1,46 +1,48 @@
 package com.habitly.habitly.controller
 
+import com.habitly.habitly.dto.ProjectDTO
 import com.habitly.habitly.model.project.Project
-import com.habitly.habitly.model.user.CustomUserDetails
 import com.habitly.habitly.repository.ProjectRepository
 import com.habitly.habitly.service.CustomUserDetailsService
 import com.habitly.habitly.service.ProjectService
+import com.habitly.habitly.util.UserUtil
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.*
 import java.util.*
+import javax.servlet.http.HttpServletRequest
 
 @RestController
 @RequestMapping("/project")
 class ProjectController(
     val projectService: ProjectService,
     val projectRepository: ProjectRepository,
-    val customUserDetailsService: CustomUserDetailsService
 ) {
 
-    @GetMapping
-    fun getProjects(): ResponseEntity<List<Project>> {
+    @GetMapping()
+    fun getProjects(request: HttpServletRequest): ResponseEntity<List<Project>> {
         return ResponseEntity.of(Optional.of(projectService.getProjects()))
     }
 
     @PostMapping("/add")
-    fun createProject(title: String, description: String): ResponseEntity<String> {
-        if (projectRepository.findOneByTitle(title) != null) {
+    fun createProject(
+        @RequestBody project: ProjectDTO,
+    ): ResponseEntity<String> {
+        if (projectRepository.findOneByTitle(project.title) != null) {
             return ResponseEntity<String>(
-                "Project with title $title already exists",
+                "Project with title $project.title already exists",
                 HttpStatus.BAD_REQUEST
             )
         }
         return ResponseEntity<String>(
-            projectService.createProject(title, description, getUserID()).toString(),
+            projectService.addProject(project.title, project.colorTheme, project.deadline).toString(),
             HttpStatus.OK
         )
     }
 
     @PatchMapping("/edit/{id}")
-    fun editProject(@PathVariable id: Long, title: String, description: String): ResponseEntity<String> {
-        val project = Project(title, description, getUserID())
+    fun editProject(@PathVariable id: Long, title: String, colorTheme: String, deadline: Date): ResponseEntity<String> {
+        val project = Project(title, colorTheme, deadline)
         return ResponseEntity.ok(projectService.editProject(id, project).toString())
     }
 
@@ -63,12 +65,6 @@ class ProjectController(
             projectService.createTaskList(id, title).toString(),
             HttpStatus.OK
         )
-    }
-
-    fun getUserID(): Long {
-        val principal = SecurityContextHolder.getContext().authentication.principal
-        val user = customUserDetailsService.loadUserByUsername(principal.toString()) as CustomUserDetails
-        return user.id
     }
 }
 

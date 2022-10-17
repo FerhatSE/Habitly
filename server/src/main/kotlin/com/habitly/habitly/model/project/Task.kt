@@ -6,7 +6,6 @@ import javax.persistence.*
 
 @Entity
 @AllOpenAnnotation
-@Table(name = "task")
 class Task(
     var name: String,
     var dateCreated: Date,

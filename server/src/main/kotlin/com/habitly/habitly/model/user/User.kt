@@ -2,23 +2,23 @@ package com.habitly.habitly.model.user
 
 import com.habitly.habitly.annotation.AllOpenAnnotation
 import com.habitly.habitly.model.Role
+import com.habitly.habitly.model.project.Project
+import org.hibernate.annotations.LazyCollection
+import org.hibernate.annotations.LazyCollectionOption
 import javax.persistence.*
 
 @Entity
 @AllOpenAnnotation
-@Table(name = "user")
 class User(
     var userName: String,
     val displayName: String,
     var hashedPassword: String,
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
-    @JoinTable(
-        name = "user_roles",
-        joinColumns = [JoinColumn(name = "user_id", referencedColumnName = "id")],
-        inverseJoinColumns = [JoinColumn(name = "role_id", referencedColumnName = "id")]
-    ) var roles: MutableList<Role> = mutableListOf()
-) {
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade = [CascadeType.ALL])
+    var roles: MutableList<Role> = mutableListOf(),
+
+    ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0
@@ -28,13 +28,16 @@ class User(
     var isLocked: Boolean = false
     var userIsEnabled: Boolean = true
 
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade = [CascadeType.ALL])
+    var projects: MutableList<Project> = mutableListOf()
+
     constructor(user: User) : this(
         user.userName,
         user.displayName,
         user.hashedPassword,
         user.roles
     ) {
-        user.id.also { this.id = it }
         user.userName.also { this.userName = it }
         user.hashedPassword.also { this.hashedPassword = it }
         user.accountNonExpired.also { this.accountNonExpired = it }

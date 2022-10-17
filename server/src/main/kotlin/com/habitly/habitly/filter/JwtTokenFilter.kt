@@ -20,7 +20,6 @@ class JwtTokenFilter(
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-        print("Reached JWT Token filter")
         val authorizationHeader = request.getHeader("Authorization")
 
         var username: String? = null
@@ -31,7 +30,7 @@ class JwtTokenFilter(
             username = jwtTokenUtil.extractUsername(jwt)
         }
 
-        if (username.isNullOrEmpty() && SecurityContextHolder.getContext().authentication == null) {
+        if (!username.isNullOrEmpty() && SecurityContextHolder.getContext().authentication == null) {
             val userDetails = userDetailsService.loadUserByUsername(username)
 
             val usernamePasswordAuthenticationToken =
