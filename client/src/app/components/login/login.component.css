@@ -1,0 +1,157 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: whitesmoke;
+}
+
+.title {
+  font-size: xxx-large;
+}
+
+.container {
+  background: linear-gradient(180deg, #4e9dab, #393e46);
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.screen {
+  background: #393e46;
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  box-shadow: 0 0 24px #24252A;
+}
+
+.screen__content {
+  z-index: 1;
+  align-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.text_field {
+  padding: 10px 0;
+  position: relative;
+}
+
+.field_icon {
+  position: absolute;
+  top: 30px;
+  color: #4e9dab;
+}
+
+.text_input {
+  border: none;
+  border-bottom: 2px solid #4e9dab;
+  background: none;
+  padding: 20px 10px 10px 24px;
+  font-weight: 700;
+  width: 40%;
+  transition: .2s;
+}
+
+.custom-invalid-feedback {
+  color: #24252A;
+}
+
+.is-invalid {
+  border-bottom: 1px solid red;
+  background: none;
+  padding: 20px 10px 10px 24px;
+  font-weight: 700;
+  width: 40%;
+  transition: .2s;
+}
+
+.text_input:active,
+.text_input:focus,
+.text_input:hover {
+  outline: none;
+  border-bottom-color: white;
+}
+
+.btn_submit {
+  background: #fff;
+  font-size: 14px;
+  margin-top: 30px;
+  padding: 16px 20px;
+  border-radius: 26px;
+  border: 1px solid #D4D3E8;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #4C489D;
+  box-shadow: 0 1px 1px #24252A;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn_submit:active,
+.btn_submit:focus,
+.btn_submit:hover {
+  border-color: #6A679E;
+  outline: none;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  width: 30%;
+  height: 40px;
+  border-radius: 25px;
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  border: none;
+  background-image: linear-gradient(to right, #4e9dab, #393e46);
+  font-family: "Montserrat", sans-serif;
+  transition: .5s;
+}
+
+.button:hover {
+  width: 40%;
+  background-image: linear-gradient(to right, #4e9dab, #24252A);
+  transition: .5s;
+}
+
+.btn-login {
+  text-decoration: none;
+}
+
+.btn-login:hover {
+  color: #4e9dab;
+}
+
+.button__text {
+  text-transform: none;
+}
+
+.sign-in {
+  color: lightgray;
+}
+
+.title_login {
+  padding-top: 90px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.title_register {
+  padding-top: 40px;
+  font-size: 20px;
+  text-align: center;
+}
+
+a:hover {
+  color: #4e9dab;
+  transition: 0.5s;
+}

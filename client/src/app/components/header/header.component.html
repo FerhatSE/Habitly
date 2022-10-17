@@ -1,0 +1,44 @@
+<header>
+  <a routerLink="home" class="logo">
+    <img src="../../../assets/images/logo_habitly.png" alt="Logo" class="logo">
+  </a>
+  <nav *ngIf="showNavigation == true" class="nav__links">
+    <ul>
+      <li><a routerLink='projects' routerLinkActive="active_projects" class="link-text_projects">
+        <p>Projects</p>
+      </a></li>
+      <li><a routerLink='calendar' routerLinkActive="active_calendar" class="link-text_calendar">
+        <p>Calendar</p>
+      </a></li>
+      <li><a routerLink='notes' routerLinkActive="active_notes" class="link-text_notes">
+        <p>Notes</p>
+      </a></li>
+    </ul>
+  </nav>
+  <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger"
+          (mouseenter)="menuTrigger.openMenu()">
+    <fa-icon class="button_icon" [icon]="faEllipsisVertical"></fa-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+        <span (mouseleave)="menuTrigger.closeMenu()">
+    <button mat-menu-item class="mat-menu-item" routerLink="about">
+                  <fa-icon class="button_icon" [icon]="faQuestion" [fixedWidth]="true"></fa-icon>
+      <span class="mat-menu-item-text">About</span>
+    </button>
+    <button mat-menu-item class="mat-menu-item" routerLink="settings">
+                  <fa-icon class="button_icon" [icon]="faCog" [fixedWidth]="true"></fa-icon>
+      <span class="mat-menu-item-text">Settings</span>
+    </button>
+    <button *ngIf="authenticated; else elseBlock" mat-menu-item class="mat-menu-item" routerLink="login">
+                  <fa-icon class="button_icon" [icon]="faDoorOpen" [fixedWidth]="true"></fa-icon>
+      <span class="mat-menu-item-text">Login</span>
+    </button>
+          <ng-template #elseBlock>
+            <button mat-menu-item class="mat-menu-item" (click)="logout()" routerLink="login">
+                  <fa-icon class="button_icon" [icon]="faDoorClosed" [fixedWidth]="true"></fa-icon>
+            <span class="mat-menu-item-text">Logout</span>
+            </button>
+          </ng-template>
+    </span>
+  </mat-menu>
+</header>

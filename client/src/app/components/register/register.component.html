@@ -1,0 +1,52 @@
+<div class="flexbox-content">
+  <div class="container">
+    <div class="screen">
+      <p class="title_register">Register</p>
+      <div class="screen__content">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="text_field">
+            <fa-icon class="field_icon" [icon]="faEnvelope"></fa-icon>
+            <input type="text" class="text_input" placeholder="Email" formControlName="username"
+                   [ngClass]="{ 'is-invalid': submitted && getFormFields()['username'].errors }"/>
+            <div *ngIf="submitted && getFormFields()['username'].errors" class="custom-invalid-feedback">
+            </div>
+          </div>
+          <div class="text_field">
+            <fa-icon class="field_icon" [icon]="faUser"></fa-icon>
+            <input type="text" class="text_input" placeholder="Display name" formControlName="displayName"
+                   [ngClass]="{ 'is-invalid': submitted && getFormFields()['displayName'].errors }"/>
+            <div *ngIf="submitted && getFormFields()['displayName'].errors" class="custom-invalid-feedback">
+            </div>
+          </div>
+          <div class="text_field">
+            <fa-icon class="field_icon" [icon]="faLock"></fa-icon>
+            <input type="password" class="text_input" placeholder="Password" formControlName="password"
+                   [ngClass]="{ 'is-invalid': submitted && getFormFields()['password'].errors }"/>
+            <div *ngIf="submitted && getFormFields()['password'].errors" class="custom-invalid-feedback">
+            </div>
+          </div>
+          <div class="text_field">
+            <fa-icon class="field_icon" [icon]="faCircleCheck"></fa-icon>
+            <input type="password" class="text_input" placeholder="Confirm password"
+                   formControlName="confirmPassword"
+                   [ngClass]="{ 'is-invalid': submitted
+                   && (!confirmPassword
+                   || getFormFields()['confirmPassword'].errors) }"/>
+            <div *ngIf="submitted && (!confirmPassword || getFormFields()['confirmPassword'].errors)"
+                 class="custom-invalid-feedback"></div>
+          </div>
+          <div class="center">
+            <button [disabled]="loading" class="button btn_submit">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              <span class="button__text"> Sign up </span>
+            </button>
+          </div>
+          <p class="sign-in">Already have an account?
+            <a routerLink="/login">
+              Login</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

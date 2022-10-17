@@ -1,0 +1,156 @@
+.container {
+  background-color: #393e46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.welcome_content {
+  background-color: #4e9dab;
+  width: 100vw;
+}
+
+.welcome_text {
+  padding-top: 65px;
+  padding-bottom: 30px;
+  font-family: "Sitka Text", sans-serif;
+  font-size: xx-large;
+  color: #ffffff;
+}
+
+.navigation_content {
+  display: flex;
+  flex-direction: column;
+  align-content: space-evenly;
+  min-width: 80vw;
+  padding-bottom: 90px;
+}
+
+.navigation_content_non_authenticated {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 70%;
+  align-items: center;
+  padding-bottom: 90px;
+  justify-content: space-evenly;
+}
+
+.box_projects {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #8FCFE6;
+  border-radius: 50px;
+  opacity: 0.65;
+  box-shadow: 0 0 24px #24252A;
+  width: 50%;
+  height: 10vh;
+  margin: 10px;
+  transition-delay: 0.2s;
+}
+
+.box_calendar {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #B9FBC1;
+  border-radius: 50px;
+  opacity: 0.65;
+  box-shadow: 0 0 24px #24252A;
+  width: 50%;
+  height: 10vh;
+  margin: 10px;
+  transition-delay: 0.2s;
+}
+
+.box_notes {
+  align-self: end;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgoldenrodyellow;
+  border-radius: 50px;
+  opacity: 0.65;
+  box-shadow: 0 0 24px #24252A;
+  width: 50%;
+  height: 10vh;
+  margin: 10px;
+  transition-delay: 0.2s;
+}
+
+.box_login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4e9dab;
+  border-radius: 90px;
+  box-shadow: 0 0 24px #24252A;
+  width: 30%;
+  height: 10vh;
+  transition-delay: 0.2s;
+}
+
+.box_register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4e9dab;
+  border-radius: 90px;
+  box-shadow: 0 0 24px #24252A;
+  width: 30%;
+  height: 10vh;
+  transition-delay: 0.2s;
+}
+
+.box_login:hover {
+  box-shadow: 0 0 12px #8FCFE6;
+  transition: 0.5s;
+  transition-delay: 0s;
+}
+
+.box_register:hover {
+  box-shadow: 0 0 12px #8FCFE6;
+  transition: 0.5s;
+  transition-delay: 0s;
+}
+
+.box_projects:hover {
+  box-shadow: 0 0 12px #8FCFE6;
+  transition: 0.5s;
+  transition-delay: 0s;
+}
+
+.box_calendar:hover {
+  box-shadow: 0 0 12px #B9FBC1;
+  transition: 0.5s;
+  transition-delay: 0s;
+}
+
+.box_notes:hover {
+  box-shadow: 0 0 12px lightgoldenrodyellow;
+  transition: 0.5s;
+  transition-delay: 0s;
+}
+
+
+.nav_title {
+  margin: auto;
+  color: #24252A;
+  font-size: x-large;
+  font-family: "Sitka Text", sans-serif;
+}
+
+.nav_icon {
+  font-size: 25px;
+  color: #393e46;
+  margin-right: 20px;
+}
+
+

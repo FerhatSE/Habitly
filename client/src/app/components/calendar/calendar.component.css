@@ -1,0 +1,9 @@
+.container {
+  background: linear-gradient(180deg, slategrey, #24252A);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+

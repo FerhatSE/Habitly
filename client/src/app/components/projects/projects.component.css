@@ -1,0 +1,78 @@
+.flexbox-content {
+  background: #393e46;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.project-list {
+  padding:0;
+  margin: 0;
+  align-items: stretch;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  width: 80vw;
+  height: 25vh;
+  border-radius: 30px;
+}
+
+.project-card {
+  display: block;
+  width: 15vw;
+  padding: .75rem;
+  margin: 20px 20px 2rem;
+  height: 15vh;
+  border: 0;
+  border-radius: 10px;
+  flex-basis: 33.333%;
+  background: #8FCFE6;
+  list-style-type: none;
+  box-shadow: 0 0 24px #24252A;
+}
+
+.project-card:hover {
+  background-color: steelblue;
+  transition: 0.1s;
+}
+
+.container_add_project {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 20vh;
+  width: 100%;
+  margin-right: 30vh;
+}
+
+.text_input {
+  background: #24252A;
+  color: lightgrey;
+  border: none;
+  width: 20vw;
+  height: 5vh;
+  border-radius: 30px;
+  padding-left: 10px;
+}
+
+.empty-list {
+  color: white;
+  font-size: 30px;
+}
+
+.add-button {
+  background: #393e46;
+  color: #8FCFE6;
+}
+
+
+
+
+
+

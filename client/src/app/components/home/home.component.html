@@ -1,0 +1,19 @@
+<div class="flexbox-content">
+  <div class="container">
+<!--    <p class="welcome_text">Welcome, {{displayName}}</p>-->
+    <div class="navigation_content">
+      <div class="box_projects" routerLink="/projects">
+        <p class="nav_title">Projects</p>
+        <fa-icon [icon]="faBookOpenReader" class="nav_icon"></fa-icon>
+      </div>
+      <div class="box_calendar" routerLink="/calendar">
+        <p class="nav_title">Calendar</p>
+        <fa-icon [icon]="faCalendar" class="nav_icon"></fa-icon>
+      </div>
+      <div class="box_notes" routerLink="/notes">
+        <p class="nav_title">Notes</p>
+        <fa-icon [icon]="faPenToSquare" class="nav_icon"></fa-icon>
+      </div>
+    </div>
+  </div>
+</div>

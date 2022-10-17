@@ -1,0 +1,17 @@
+<div class="flexbox-content">
+  <div class="project-list">
+    <div *ngIf="projects.length == 0; else elseBlock">
+      <p class="empty-list">No Projects added yet</p>
+    </div>
+    <ng-template #elseBlock>
+      <div *ngFor="let project of projects">
+        <li class="project-card">{{project.title}}</li>
+      </div>
+    </ng-template>
+  </div>
+  <div class="container_add_project">
+    <button mat-fab class=add-button (click)="openBottomSheet()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>

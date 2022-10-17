@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: xx-large;
+  color: #edf0f1;
+  text-decoration: none;
+}
+
+li, a, button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #edf0f1;
+  text-decoration: none;
+}
+
+.btn {
+  alignment: center;
+  padding: 13px;
+
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1% 1%;
+  height: 10vh;
+  background-color: #24252A;
+}
+
+::ng-deep .mat-menu-panel {
+  background-color: #24252A;
+}
+
+.mat-menu-item {
+  background-color: #24252A;
+  color: white;
+  margin: auto;
+}
+
+.mat-menu-item:hover {
+  background-color: teal;
+  color: white;
+  transition: .5s;
+}
+
+.button_icon {
+  font-size: 20px;
+  color: white;
+  padding-right: 20px;
+}
+
+.mat-menu-item-text {
+  background: none;
+}
+
+.nav__links {
+  list-style: none;
+  margin-right: 3%;
+  margin-left: auto;
+}
+
+.nav__links li {
+  display: inline-block;
+  padding: 0 20px;
+}
+
+.link-text_projects:hover {
+  color: #8FCFE6;
+  transition: .5s;
+}
+
+.link-text_calendar:hover {
+  color: #B9FBC1;
+  transition: .5s;
+}
+
+.link-text_notes:hover {
+  color: lightgoldenrodyellow;
+  transition: .5s;
+}
+
+.active_projects {
+  color: #8FCFE6;
+}
+
+.active_calendar {
+  color: #B9FBC1;
+}
+
+.active_notes {
+  color: lightgoldenrodyellow;
+}
+
+.logo {
+  height: 100%;
+  margin: 0;
+}
+
+ul li {
+  list-style: none;
+  margin-top: 3%;
+}

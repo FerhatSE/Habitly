@@ -1,0 +1,17 @@
+<div class="add-project-container">
+  <h1 class="title">Add new project</h1>
+  <form [formGroup]="addProjectForm" (ngSubmit)="onAddProjectSubmit()">
+    <div class="content-row">
+      <input type="text" class="text_input" placeholder="Project title" formControlName="title"/>
+    </div>
+    <div class="content-row">
+      <input type="text" class="text_input" placeholder="Deadline" formControlName="deadline"/>
+    </div>
+    <div class="content-row">
+            <input type="text" class="text_input" placeholder="Color theme" formControlName="color"/>
+      <button mat-icon-button class="icon-button"><mat-icon>date_range</mat-icon></button>
+    </div>
+    <button mat-flat-button class="submit-button">Save</button>
+  </form>
+</div>
+

@@ -1,0 +1,42 @@
+.add-project-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-row {
+  width: 30vw;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.text_input {
+  background: #24252A;
+  opacity: 0.6;
+  color: lightgrey;
+  border: none;
+  width: 20vw;
+  height: 5vh;
+  border-radius: 30px;
+  padding-left: 10px;
+  margin: 10px;
+  display: flex;
+  justify-content: flex-end;
+  flex: 100px; /* adjust width if needed */
+}
+
+.title {
+  font-family: "Sitka Text", sans-serif;
+  font-size: large;
+  color: ghostwhite;
+}
+
+.submit-button {
+  background: #8FCFE6;
+  margin: 10px;
+}
+
+.icon-button {
+  display: flex;
+  justify-content: flex-start;
+}
+

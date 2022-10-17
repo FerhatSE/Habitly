@@ -1,0 +1,35 @@
+<div class="flexbox-content">
+  <div class="container">
+    <div class="screen">
+      <div class="screen__content">
+        <p class="title_login">Login</p>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="text_field">
+            <fa-icon class="field_icon" [icon]="faUser"></fa-icon>
+            <input type="text" class="text_input" placeholder="Email" formControlName="username"
+                   [ngClass]="{ 'is-invalid': submitted && f()['username'].errors }"/>
+            <div *ngIf="submitted && f()['username'].errors" class="custom-invalid-feedback">
+            </div>
+          </div>
+          <div class="text_field">
+            <fa-icon class="field_icon" [icon]="faLock"></fa-icon>
+            <input type="password" class="text_input" placeholder="Password" formControlName="password"
+                   [ngClass]="{ 'is-invalid': submitted && f()['password'].errors }"/>
+            <div *ngIf="submitted && f()['password'].errors" class="custom-invalid-feedback">
+              <div *ngIf="f()['password'].hasError('required')">Password is required</div>
+            </div>
+          </div>
+          <div class="center">
+          <button [disabled]="loading" class="button btn_submit">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            <span class="button__text"> Login </span>
+          </button>
+          </div>
+          <p class="sign-in">Don't have an account?
+            <a routerLink="/register">
+              Sign up</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
